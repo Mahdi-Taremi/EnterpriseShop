@@ -1,6 +1,16 @@
 using Redis_Example.Middleware;
+using Serilog;
+
+//1. Add Serilog 
+Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+//2. Add Serilog 
+builder.Host.UseSerilog((context, services, configuration) => { configuration.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services).Enrich.FromLogContext(); });
+//Serilog - HardCode
+//builder.Host.UseSerilog();
 
 // Add services to the container.
 
