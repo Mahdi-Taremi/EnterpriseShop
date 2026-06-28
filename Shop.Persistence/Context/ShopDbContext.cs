@@ -17,6 +17,15 @@ namespace Shop.Persistence.Context
         {
 
         }
+        // ReView 
+        protected override void OnModelCreating(
+         ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfigurationsFromAssembly(
+                typeof(ShopDbContext).Assembly);
+        }
         public DbSet<Product> Products => Set<Product>();
     }
 }
