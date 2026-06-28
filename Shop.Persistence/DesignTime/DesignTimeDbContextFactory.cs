@@ -19,8 +19,11 @@ namespace Shop.Persistence.DesignTime
             optionsBuilder.UseSqlServer(
                 "Server=.;Database=ShopDB;User Id=MahdiTaremi;Password=12;TrustServerCertificate=True;");
 
+            // When use Migration -> Beacuse Non-existence ServiceProvider
             return new ShopDbContext(
-                optionsBuilder.Options);
+             optionsBuilder.Options,
+             new NullDateTimeProvider(),
+             new NullCurrentUserService());
         }
     }
 }

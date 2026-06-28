@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Domain.Entities
 {
-    public class Product : BaseAuditableEntity
+    public class Product : BaseSoftDeleteEntity
     {
         public string Name { get; set; } = default!;
 

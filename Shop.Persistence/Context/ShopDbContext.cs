@@ -23,20 +23,24 @@ namespace Shop.Persistence.Context
             _dateTime = dateTime;
             _currentUser = currentUser;
         }
+
         // ReView 
         protected override void OnModelCreating(
          ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            // Add future - Reflection  (Global Query Filter)
+            modelBuilder.Entity<Product>()
+            .HasQueryFilter(x => !x.IsDeleted);
             modelBuilder.ApplyConfigurationsFromAssembly(
                 typeof(ShopDbContext).Assembly);
         }
-        // SaveChangesAsync
+
+        // SaveChangesAsync --> SaveChangesInterceptor (Interceptor)
         public override async Task<int> SaveChangesAsync(
        CancellationToken cancellationToken = default)
         {
-            foreach (var entry in ChangeTracker.Entries<BaseAuditableEntity>())
+            foreach (var entry in ChangeTracker.Entries<BaseSoftDeleteEntity>())
             {
                 switch (entry.State)
                 {
@@ -55,9 +59,19 @@ namespace Shop.Persistence.Context
                         entry.Entity.LastModifiedBy = _currentUser.UserId;
 
                         break;
+                    case EntityState.Deleted:
+
+                        entry.State = EntityState.Modified;
+
+                        entry.Entity.IsDeleted = true;
+
+                        entry.Entity.DeletedAt = _dateTime.UtcNow;
+
+                        entry.Entity.DeletedBy = _currentUser.UserId;
+
+                        break;
                 }
             }
-
             return await base.SaveChangesAsync(cancellationToken);
         }
         public DbSet<Product> Products => Set<Product>();
