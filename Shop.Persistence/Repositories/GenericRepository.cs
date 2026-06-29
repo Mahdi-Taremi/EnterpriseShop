@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Application.Common.Interfaces.Repositories;
+using Shop.Application.Common.Specifications;
 using Shop.Domain.Entities.Base;
 using Shop.Persistence.Context;
+using Shop.Persistence.Specification;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,6 +60,20 @@ namespace Shop.Persistence.Repositories
         public virtual void Delete(TEntity entity)
         {
             DbSet.Remove(entity);
+        }
+        public async Task<List<TEntity>>
+            GetAllAsync(
+            BaseSpecification<TEntity> specification,
+            CancellationToken cancellationToken)
+        {
+            var query =
+                SpecificationEvaluator<TEntity>
+                .GetQuery(
+                    DbSet.AsQueryable(),
+                    specification);
+
+            return await query
+                .ToListAsync(cancellationToken);
         }
     }
 }

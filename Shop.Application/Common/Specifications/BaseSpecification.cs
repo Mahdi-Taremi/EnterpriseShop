@@ -13,6 +13,10 @@ namespace Shop.Application.Common.Specifications
         public List<Expression<Func<TEntity, object>>> Includes { get; } = [];
         public Expression<Func<TEntity, object>>? OrderBy { get; protected set; }
         public Expression<Func<TEntity, object>>? OrderByDescending { get; protected set; }
+        public int Skip { get; protected set; }
+        public int Take { get; protected set; }
+        public bool IsPagingEnabled { get; protected set; }
+
         protected void AddInclude(Expression<Func<TEntity, object>> include)
         {
             Includes.Add(include);
@@ -26,6 +30,15 @@ namespace Shop.Application.Common.Specifications
         protected void ApplyOrderByDescending(Expression<Func<TEntity, object>> orderByDesc)
         {
             OrderByDescending = orderByDesc;
+        }
+
+        protected void ApplyPaging(int skip, int take)
+        {
+            Skip = skip;
+
+            Take = take;
+
+            IsPagingEnabled = true;
         }
     }
 }
