@@ -34,6 +34,9 @@ namespace Shop.Persistence.Context
             services.AddScoped(
             typeof(IGenericRepository<>),
             typeof(GenericRepository<>));
+
+            services.AddScoped<IProductRepository, ProductRepository>();
+
             return services;
         }
     }
