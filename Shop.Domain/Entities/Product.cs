@@ -14,5 +14,16 @@ namespace Shop.Domain.Entities
         public decimal Price { get; set; }
 
         public int Stock { get; set; }
+        private Product()
+        {
+        }
+
+        public Product(string name, decimal price, int stock)
+        {
+            Name = name;
+            Price = price;
+            Stock = stock;
+        }
     }
+    
 }

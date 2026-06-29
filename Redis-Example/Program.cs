@@ -3,6 +3,7 @@ using Redis_Example.Middleware;
 using Serilog;
 using Shop.Infrastructure.Context;
 using Shop.Persistence.Context;
+using Shop.Persistence.Database;
 
 //1. Add Serilog 
 Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
@@ -74,5 +75,15 @@ app.UseAuthorization();
 app.UseRequestLogging();
 
 app.MapControllers();
+
+// Initialization 
+using (var scope = app.Services.CreateScope())
+{
+    var initializer =
+        scope.ServiceProvider
+             .GetRequiredService<IDatabaseInitializer>();
+
+    await initializer.InitializeAsync();
+}
 
 app.Run();

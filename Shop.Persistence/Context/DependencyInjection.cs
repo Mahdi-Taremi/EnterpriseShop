@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shop.Application.Interfaces;
+using Shop.Persistence.Database;
+using Shop.Persistence.Database.Seed;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,8 @@ namespace Shop.Persistence.Context
             provider =>
             provider.GetRequiredService<ShopDbContext>());
 
+            services.AddScoped<IDatabaseInitializer, DatabaseInitializer>();
+            services.AddScoped<ProductSeeder>();
             return services;
         }
     }
