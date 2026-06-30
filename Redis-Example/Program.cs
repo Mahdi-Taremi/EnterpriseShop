@@ -1,6 +1,7 @@
 using Microsoft.OpenApi;
 using Redis_Example.Middleware;
 using Serilog;
+using Shop.Application;
 using Shop.Infrastructure.Context;
 using Shop.Persistence.Context;
 using Shop.Persistence.Database;
@@ -49,8 +50,7 @@ builder.Services.AddPersistence(builder.Configuration);
 
 builder.Services.AddInfrastructure();
 
-//builder.Services
-//.AddApplication();
+builder.Services.AddApplication();
 
 var app = builder.Build();
 

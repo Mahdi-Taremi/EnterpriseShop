@@ -11,14 +11,14 @@
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Mapping\" />
     <Folder Include="Common\Validation\" />
-    <Folder Include="Common\Results\" />
     <Folder Include="Common\Responses\" />
-    <Folder Include="CQRS\Products\Commands\CreateProduct\" />
     <Folder Include="CQRS\Products\Commands\DeleteProduct\" />
+    <Folder Include="CQRS\Products\Commands\IncreaseStock\" />
     <Folder Include="CQRS\Products\Commands\UpdateProduct\" />
     <Folder Include="CQRS\Products\Mapping\" />
     <Folder Include="CQRS\Products\Events\" />
     <Folder Include="CQRS\Products\Queries\GetProductById\" />
+    <Folder Include="CQRS\Products\Queries\GetAvailableProducts\" />
     <Folder Include="CQRS\Products\Validators\" />
     <Folder Include="Mappings\" />
     <Folder Include="Behaviors\" />
