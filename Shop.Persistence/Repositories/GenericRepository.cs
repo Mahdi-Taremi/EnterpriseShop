@@ -29,7 +29,7 @@ namespace Shop.Persistence.Repositories
         }
 
         public virtual async Task<TEntity?> GetByIdAsync(
-            int id,
+            Guid id,
             CancellationToken cancellationToken = default)
         {
             return await DbSet.FindAsync(
@@ -37,12 +37,6 @@ namespace Shop.Persistence.Repositories
                 cancellationToken);
         }
 
-        public virtual async Task<List<TEntity>> GetAllAsync(
-            CancellationToken cancellationToken = default)
-        {
-            return await DbSet.ToListAsync(
-                cancellationToken);
-        }
 
         public virtual async Task AddAsync(TEntity entity,
             CancellationToken cancellationToken = default)
@@ -61,19 +55,64 @@ namespace Shop.Persistence.Repositories
         {
             DbSet.Remove(entity);
         }
-        public async Task<List<TEntity>>
-            GetAllAsync(
-            BaseSpecification<TEntity> specification,
-            CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<TEntity>>
+         ListAsync(
+        BaseSpecification<TEntity> specification,
+        CancellationToken cancellationToken = default)
         {
             var query =
                 SpecificationEvaluator<TEntity>
-                .GetQuery(
-                    DbSet.AsQueryable(),
-                    specification);
+                    .GetQuery(
+                        Context.Set<TEntity>(),
+                        specification);
 
-            return await query
-                .ToListAsync(cancellationToken);
+            return await query.ToListAsync(cancellationToken);
+        }
+        public async Task<bool> AnyAsync(
+         BaseSpecification<TEntity> specification,
+         CancellationToken cancellationToken = default)
+        {
+            var query = SpecificationEvaluator<TEntity>
+                .GetQuery(DbSet.AsQueryable(), specification);
+
+            return await query.AnyAsync(cancellationToken);
+        }
+        public async Task<int> CountAsync(
+             BaseSpecification<TEntity> specification,
+             CancellationToken cancellationToken = default)
+        {
+            var query = SpecificationEvaluator<TEntity>
+                .GetQuery(DbSet.AsQueryable(), specification);
+
+            return await query.CountAsync(cancellationToken);
+        }
+        public async Task<TEntity?> FirstOrDefaultAsync(
+            BaseSpecification<TEntity> specification,
+            CancellationToken cancellationToken = default)
+        {
+            var query = SpecificationEvaluator<TEntity>
+                .GetQuery(DbSet.AsQueryable(), specification);
+
+            return await query.FirstOrDefaultAsync(cancellationToken);
+        }
+        public async Task<TEntity?> SingleOrDefaultAsync(
+             BaseSpecification<TEntity> specification,
+             CancellationToken cancellationToken = default)
+        {
+            var query = SpecificationEvaluator<TEntity>
+                .GetQuery(DbSet.AsQueryable(), specification);
+
+            return await query.SingleOrDefaultAsync(cancellationToken);
+        }
+        public async Task AddRangeAsync(
+             IEnumerable<TEntity> entities,
+             CancellationToken cancellationToken = default)
+        {
+            await DbSet.AddRangeAsync(entities, cancellationToken);
+        }
+        public void DeleteRange(IEnumerable<TEntity> entities)
+        {
+            DbSet.RemoveRange(entities);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Shop.Application.Common.Interfaces;
+using Shop.Application.Common.Interfaces.Services;
 using Shop.Infrastructure.Services;
 using System;
 using System.Collections.Generic;

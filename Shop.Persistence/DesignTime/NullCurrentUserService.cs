@@ -1,4 +1,4 @@
-﻿using Shop.Application.Common.Interfaces;
+﻿using Shop.Application.Common.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

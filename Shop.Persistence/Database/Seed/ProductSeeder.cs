@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shop.Application.Interfaces;
+using Shop.Application.Common.Interfaces.Database;
 using Shop.Domain.Entities;
 using Shop.Persistence.Context;
 using Shop.Persistence.Database.Faker;

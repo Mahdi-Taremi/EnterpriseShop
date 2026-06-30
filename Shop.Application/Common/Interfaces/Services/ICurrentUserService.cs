@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.Application.Common.Interfaces
+namespace Shop.Application.Common.Interfaces.Services
 {
-    public interface IDateTimeProvider
+    public interface ICurrentUserService
     {
-        DateTime UtcNow { get; }
+        string? UserId { get; }
     }
 }

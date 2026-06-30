@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shop.Application.Common.Interfaces.Database;
 using Shop.Application.Common.Interfaces.Repositories;
-using Shop.Application.Interfaces;
 using Shop.Persistence.Database;
 using Shop.Persistence.Database.Seed;
 using Shop.Persistence.Repositories;

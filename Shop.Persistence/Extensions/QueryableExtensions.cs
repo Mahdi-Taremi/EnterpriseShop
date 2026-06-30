@@ -35,17 +35,6 @@ namespace Shop.Persistence.Extensions
 
                 TotalCount = totalCount,
 
-                TotalPages =
-                    (int)Math.Ceiling(
-                        totalCount /
-                        (double)request.PageSize),
-
-                HasNextPage =
-                    request.PageNumber * request.PageSize
-                    < totalCount,
-
-                HasPreviousPage =
-                    request.PageNumber > 1
             };
         }
     }

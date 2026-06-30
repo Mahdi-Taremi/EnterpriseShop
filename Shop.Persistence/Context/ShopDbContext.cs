@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Shop.Application.Common.Interfaces;
-using Shop.Application.Interfaces;
-using Shop.Domain.Entities;
+using Shop.Application.Common.Interfaces.Database;
+using Shop.Application.Common.Interfaces.Services;
 using Shop.Domain.Entities;
 using Shop.Domain.Entities.Base;
 using System;

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Persistence.Repositories
 {
-    public class ProductRepository
+    public sealed class ProductRepository
     : GenericRepository<Product>,
       IProductRepository
     {
@@ -19,31 +19,5 @@ namespace Shop.Persistence.Repositories
             : base(context)
         {
         }
-
-        public async Task<List<Product>> GetAvailableProductsAsync(
-            CancellationToken cancellationToken = default)
-        {
-            return await DbSet
-                .Where(x => x.Stock > 0)
-                .ToListAsync(cancellationToken);
-        }
-
-        public async Task<List<Product>> GetLowStockProductsAsync(
-            int threshold,
-            CancellationToken cancellationToken = default)
-        {
-            return await DbSet
-                .Where(x => x.Stock <= threshold)
-                .ToListAsync(cancellationToken);
-        }
-
-        //public async Task<List<Product>> GetProductsByCategoryAsync(
-        //    int categoryId,
-        //    CancellationToken cancellationToken = default)
-        //{
-        //    return await DbSet
-        //        .Where(x => x.CategoryId == categoryId)
-        //        .ToListAsync(cancellationToken);
-        //}
     }
 }

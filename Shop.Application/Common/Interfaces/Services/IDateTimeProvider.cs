@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.Application.Interfaces
+namespace Shop.Application.Common.Interfaces.Services
 {
-    internal interface IProductRepository
+    public interface IDateTimeProvider
     {
+        DateTime UtcNow { get; }
     }
 }

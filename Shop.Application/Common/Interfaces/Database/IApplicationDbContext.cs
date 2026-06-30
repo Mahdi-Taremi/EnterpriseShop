@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.Application.Interfaces
+namespace Shop.Application.Common.Interfaces.Database
 {
     public interface IApplicationDbContext
     {
