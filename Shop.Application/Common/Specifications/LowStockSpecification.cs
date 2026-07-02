@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.Common.Specifications
 {
-    public class LowStockSpecification : BaseSpecification<Product>
+    public class LowStockSpecification
+      : BaseSpecification<Product>
     {
         public LowStockSpecification(int threshold)
+            : base(x => x.Stock <= threshold)
         {
-            Criteria = x => x.Stock <= threshold;
         }
     }
 }

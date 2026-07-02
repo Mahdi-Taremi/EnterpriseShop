@@ -1,5 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Application.Common.Models.Pagination;
+using Shop.Application.Common.Models.Products;
+using Shop.Application.Common.Specifications;
+using Shop.Application.CQRS.Products.DTOs;
+using Shop.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,13 +32,9 @@ namespace Shop.Persistence.Extensions
             return new PagedResponse<T>
             {
                 Items = items,
-
                 PageNumber = request.PageNumber,
-
                 PageSize = request.PageSize,
-
-                TotalCount = totalCount,
-
+                TotalCount = totalCount
             };
         }
     }

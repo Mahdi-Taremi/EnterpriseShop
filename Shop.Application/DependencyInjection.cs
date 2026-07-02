@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+//using AutoMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace Shop.Application
         public static IServiceCollection AddApplication(
             this IServiceCollection services)
         {
+          //  services.AddAutoMapper(
+          //Assembly.GetExecutingAssembly());
             services.AddMediatR(cfg =>
             {
                 cfg.RegisterServicesFromAssembly(

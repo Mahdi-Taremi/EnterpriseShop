@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shop.Domain.Entities.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,12 +8,25 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.Common.Specifications
 {
-    public abstract class BaseSpecification<TEntity>
+    public abstract class BaseSpecification<TEntity> where TEntity : BaseEntity
     {
-        public Expression<Func<TEntity, bool>>? Criteria { get; protected set; }
+        protected BaseSpecification()
+        {
+        }
+
+        protected BaseSpecification(
+            Expression<Func<TEntity, bool>> criteria)
+        {
+            Criteria = criteria;
+        }
+        public Expression<Func<TEntity, bool>>? Criteria { get; }
+        //public Expression<Func<TEntity, bool>>? Criteria { get; protected set; }
         public List<Expression<Func<TEntity, object>>> Includes { get; } = [];
         public Expression<Func<TEntity, object>>? OrderBy { get; protected set; }
+        //public Expression<Func<TEntity, object>>? OrderBy { get; private set; }
+        //public Expression<Func<TEntity, object>>? OrderByDescending { get; private set; }
         public Expression<Func<TEntity, object>>? OrderByDescending { get; protected set; }
+        //public int Skip { get; private set; }
         public int Skip { get; protected set; }
         public int Take { get; protected set; }
         public bool IsPagingEnabled { get; protected set; }
@@ -39,6 +53,16 @@ namespace Shop.Application.Common.Specifications
             Take = take;
 
             IsPagingEnabled = true;
+        }
+        protected void AddOrderBy(
+        Expression<Func<TEntity, object>> expression)
+        {
+            OrderBy = expression;
+        }
+        protected void AddOrderByDescending(
+        Expression<Func<TEntity, object>> expression)
+        {
+            OrderByDescending = expression;
         }
     }
 }

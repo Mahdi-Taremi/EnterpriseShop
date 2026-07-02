@@ -12,31 +12,15 @@ namespace Shop.Application.Common.Specifications
       : BaseSpecification<Product>
     {
         public ProductSpecification(ProductFilter filter)
+    : base(x =>
+        string.IsNullOrWhiteSpace(filter.Search)
+        || x.Name.Contains(filter.Search))
         {
-            Criteria =
-                x =>
-                //(!filter.CategoryId.HasValue ||
-                // x.CategoryId == filter.CategoryId)
-                //&&
-                //(!filter.BrandId.HasValue ||
-                // x.BrandId == filter.BrandId)
-                //&&
-                (!filter.MinPrice.HasValue ||
-                 x.Price >= filter.MinPrice)
-                &&
-                (!filter.MaxPrice.HasValue ||
-                 x.Price <= filter.MaxPrice)
-                &&
-                (!filter.OnlyAvailable.HasValue ||
-                 x.Stock > 0);
+            ApplySorting(filter);
 
             ApplyPaging(
-                (filter.PageNumber - 1) *
-                filter.PageSize,
-
+                (filter.PageNumber - 1) * filter.PageSize,
                 filter.PageSize);
-
-            ApplySorting(filter);
         }
 
         private void ApplySorting(ProductFilter filter)

@@ -27,14 +27,23 @@ namespace Shop.Application.CQRS.Products.Queries.GetProducts
             _repository = repository;
         }
 
-        public async Task<PagedResponse<ProductDto>>
-            Handle(
-                GetProductsQuery request,
-                CancellationToken cancellationToken)
+        public async Task<PagedResponse<ProductDto>> Handle(
+     GetProductsQuery request,
+     CancellationToken cancellationToken)
         {
+            var filter = new ProductFilter
+            {
+                PageNumber = request.PageNumber,
+                PageSize = request.PageSize
+            };
+
             var specification =
-                new ProductSpecification(
-                    new ProductFilter());
+                new ProductSpecification(filter);
+
+            var totalCount =
+                await _repository.CountAsync(
+                    specification,
+                    cancellationToken);
 
             var products =
                 await _repository.ListAsync(
@@ -42,24 +51,20 @@ namespace Shop.Application.CQRS.Products.Queries.GetProducts
                     cancellationToken);
 
             var items =
-                products
-                .Skip((request.PageNumber - 1) * request.PageSize)
-                .Take(request.PageSize)
-                .Select(x => new ProductDto
+                products.Select(x => new ProductDto
                 {
                     Id = x.Id,
                     Name = x.Name,
                     Price = x.Price,
                     Stock = x.Stock
-                })
-                .ToList();
+                }).ToList();
 
             return new PagedResponse<ProductDto>
             {
                 Items = items,
                 PageNumber = request.PageNumber,
                 PageSize = request.PageSize,
-                TotalCount = products.Count
+                TotalCount = totalCount
             };
         }
     }

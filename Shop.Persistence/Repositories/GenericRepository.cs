@@ -77,15 +77,28 @@ namespace Shop.Persistence.Repositories
 
             return await query.AnyAsync(cancellationToken);
         }
-        public async Task<int> CountAsync(
-             BaseSpecification<TEntity> specification,
-             CancellationToken cancellationToken = default)
+        //public async Task<int> CountAsync(
+        //     BaseSpecification<TEntity> specification,
+        //     CancellationToken cancellationToken = default)
+        //{
+        //    var query = SpecificationEvaluator<TEntity>
+        //        .GetQuery(DbSet.AsQueryable(), specification);
+
+        //    return await query.CountAsync(cancellationToken);
+        //}
+        public virtual async Task<int> CountAsync(
+            BaseSpecification<TEntity> specification,
+            CancellationToken cancellationToken = default)
         {
-            var query = SpecificationEvaluator<TEntity>
-                .GetQuery(DbSet.AsQueryable(), specification);
+            var query =
+                SpecificationEvaluator<TEntity>
+                    .GetQueryWithoutPaging(
+                        DbSet.AsQueryable(),
+                        specification);
 
             return await query.CountAsync(cancellationToken);
         }
+        
         public async Task<TEntity?> FirstOrDefaultAsync(
             BaseSpecification<TEntity> specification,
             CancellationToken cancellationToken = default)
@@ -113,6 +126,10 @@ namespace Shop.Persistence.Repositories
         public void DeleteRange(IEnumerable<TEntity> entities)
         {
             DbSet.RemoveRange(entities);
+        }
+        public virtual IQueryable<TEntity> AsQueryable()
+        {
+            return DbSet.AsQueryable();
         }
     }
 }

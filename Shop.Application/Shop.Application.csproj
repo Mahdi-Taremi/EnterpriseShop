@@ -9,13 +9,11 @@
   <ItemGroup>
     <Folder Include="Common\Behaviors\" />
     <Folder Include="Common\Exceptions\" />
-    <Folder Include="Common\Mapping\" />
     <Folder Include="Common\Validation\" />
     <Folder Include="Common\Responses\" />
     <Folder Include="CQRS\Products\Commands\DeleteProduct\" />
     <Folder Include="CQRS\Products\Commands\IncreaseStock\" />
     <Folder Include="CQRS\Products\Commands\UpdateProduct\" />
-    <Folder Include="CQRS\Products\Mapping\" />
     <Folder Include="CQRS\Products\Events\" />
     <Folder Include="CQRS\Products\Queries\GetProductById\" />
     <Folder Include="CQRS\Products\Queries\GetAvailableProducts\" />
@@ -28,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="16.1.1" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
     <PackageReference Include="MediatR" Version="14.1.0" />
