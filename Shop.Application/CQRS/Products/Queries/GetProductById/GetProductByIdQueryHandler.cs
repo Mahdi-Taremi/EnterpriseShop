@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Shop.Application.Common.Interfaces.Repositories;
 using Shop.Application.CQRS.Products.DTOs;
 using System;
@@ -13,11 +14,14 @@ namespace Shop.Application.CQRS.Products.Queries.GetProductById
     : IRequestHandler<GetProductByIdQuery, ProductDto>
     {
         private readonly IProductRepository _repository;
+        private readonly IMapper _mapper;
 
         public GetProductByIdQueryHandler(
-            IProductRepository repository)
+        IProductRepository repository,
+        IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<ProductDto> Handle(
@@ -32,14 +36,14 @@ namespace Shop.Application.CQRS.Products.Queries.GetProductById
             if (product is null)
                 throw new KeyNotFoundException(
                     $"Product '{request.Id}' was not found.");
-
-            return new ProductDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Price = product.Price,
-                Stock = product.Stock
-            };
+            return _mapper.Map<ProductDto>(product);
+            //return new ProductDto
+            //{
+            //    Id = product.Id,
+            //    Name = product.Name,
+            //    Price = product.Price,
+            //    Stock = product.Stock
+            //};
         }
     }
 }

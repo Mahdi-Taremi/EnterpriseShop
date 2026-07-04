@@ -1,10 +1,12 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 //using Shop.Application.Common.Interfaces;
 using Shop.Application.Common.Interfaces.Repositories;
 using Shop.Application.Common.Models.Pagination;
 using Shop.Application.Common.Models.Products;
 using Shop.Application.Common.Specifications;
 using Shop.Application.CQRS.Products.DTOs;
+using Shop.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +22,13 @@ namespace Shop.Application.CQRS.Products.Queries.GetProducts
           PagedResponse<ProductDto>>
     {
         private readonly IProductRepository _repository;
+        private readonly IMapper _mapper;
 
         public GetProductsQueryHandler(
-            IProductRepository repository)
+            IProductRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
         public async Task<PagedResponse<ProductDto>> Handle(
@@ -50,15 +54,16 @@ namespace Shop.Application.CQRS.Products.Queries.GetProducts
                     specification,
                     cancellationToken);
 
+            //var items =
+            //    products.Select(x => new ProductDto
+            //    {
+            //        Id = x.Id,
+            //        Name = x.Name,
+            //        Price = x.Price,
+            //        Stock = x.Stock
+            //    }).ToList();
             var items =
-                products.Select(x => new ProductDto
-                {
-                    Id = x.Id,
-                    Name = x.Name,
-                    Price = x.Price,
-                    Stock = x.Stock
-                }).ToList();
-
+                _mapper.Map<List<ProductDto>>(products);
             return new PagedResponse<ProductDto>
             {
                 Items = items,
