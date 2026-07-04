@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Shop.Application.CQRS.Products.Commands.CreateProduct;
+using Shop.Application.CQRS.Products.Commands.DeleteProduct;
 using Shop.Application.CQRS.Products.Commands.UpdateProduct;
 using Shop.Application.CQRS.Products.Queries;
 using Shop.Application.CQRS.Products.Queries.GetProductById;
@@ -79,6 +80,20 @@ namespace Redis_Example.Controllers
 
             if (result.IsFailure)
                 return BadRequest(result.Error);
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id,CancellationToken cancellationToken)
+        {
+            var result =
+                await _mediator.Send(
+                    new DeleteProductCommand(id),
+                    cancellationToken);
+
+            if (result.IsFailure)
+                return NotFound(result.Error);
 
             return NoContent();
         }
