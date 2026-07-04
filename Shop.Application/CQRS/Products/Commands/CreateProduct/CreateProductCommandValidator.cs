@@ -5,16 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.Application.CQRS.Products.Commands.UpdateProduct
+namespace Shop.Application.CQRS.Products.Commands.CreateProduct
 {
-    public sealed class UpdateProductCommandValidator
-    : AbstractValidator<UpdateProductCommand>
+    public sealed class CreateProductCommandValidator: AbstractValidator<CreateProductCommand>
     {
-        public UpdateProductCommandValidator()
+        public CreateProductCommandValidator()
         {
-            RuleFor(x => x.Id)
-                .NotEmpty();
-
             RuleFor(x => x.Name)
                 .NotEmpty()
                 .MaximumLength(200);
