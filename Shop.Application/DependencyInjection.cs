@@ -1,11 +1,12 @@
 ﻿using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Shop.Application.Behaviors;
 using Shop.Application.Common.Behaviors;
-using System.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,6 +36,10 @@ namespace Shop.Application
                 typeof(IPipelineBehavior<,>),
                 typeof(ValidationBehavior<,>));
 
+            services.AddTransient(
+                typeof(IPipelineBehavior<,>),
+                typeof(LoggingBehavior<,>));
+            
             return services;
         }
     }

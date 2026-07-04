@@ -16,7 +16,6 @@
     <Folder Include="CQRS\Products\Queries\GetAvailableProducts\" />
     <Folder Include="CQRS\Products\Validators\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Behaviors\" />
     <Folder Include="Queries\" />
     <Folder Include="Validators\" />
   </ItemGroup>
