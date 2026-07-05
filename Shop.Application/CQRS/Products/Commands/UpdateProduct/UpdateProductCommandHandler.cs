@@ -46,8 +46,8 @@ namespace Shop.Application.CQRS.Products.Commands.UpdateProduct
 
             _repository.Update(product);
 
-            await _context.SaveChangesAsync(
-                cancellationToken);
+            //await _context.SaveChangesAsync(
+            //    cancellationToken);
 
             return Result.Success();
         }

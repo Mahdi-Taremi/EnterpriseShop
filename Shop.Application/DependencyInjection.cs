@@ -44,6 +44,10 @@ namespace Shop.Application
                 typeof(IPipelineBehavior<,>),
                 typeof(PerformanceBehavior<,>));
 
+            services.AddTransient(
+                typeof(IPipelineBehavior<,>),
+                typeof(TransactionBehavior<,>));
+
             return services;
         }
     }

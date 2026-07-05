@@ -41,8 +41,8 @@ namespace Shop.Application.CQRS.Products.Commands.DeleteProduct
 
             _repository.Delete(product);
 
-            await _context.SaveChangesAsync(
-                cancellationToken);
+            //await _context.SaveChangesAsync(
+            //    cancellationToken);
 
             return Result.Success();
         }
