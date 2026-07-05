@@ -10,7 +10,6 @@
     <Folder Include="Commands\" />
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Validation\" />
-    <Folder Include="Common\Responses\" />
     <Folder Include="CQRS\Products\Commands\IncreaseStock\" />
     <Folder Include="CQRS\Products\Events\" />
     <Folder Include="CQRS\Products\Queries\GetAvailableProducts\" />
