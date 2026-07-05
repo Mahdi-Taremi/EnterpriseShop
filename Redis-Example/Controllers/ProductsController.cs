@@ -42,6 +42,8 @@ namespace Redis_Example.Controllers
              int pageSize = 10,
              CancellationToken cancellationToken = default)
         {
+            //await Task.Delay(9000);
+            //await Task.Delay(9000, cancellationToken);
             var result =
                 await _mediator.Send(
                     new GetProductsQuery(

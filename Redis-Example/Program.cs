@@ -6,14 +6,14 @@ using Shop.Infrastructure.Context;
 using Shop.Persistence.Context;
 using Shop.Persistence.Database;
 
-//1. Add Serilog 
-Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
+//1. Add Serilog +
+//Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-//2. Add Serilog 
-builder.Host.UseSerilog((context, services, configuration) => { configuration.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services).Enrich.FromLogContext(); });
+//2. Add Serilog +
+//builder.Host.UseSerilog((context, services, configuration) => { configuration.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services).Enrich.FromLogContext(); });
 //Serilog - HardCode
 //builder.Host.UseSerilog();
 
@@ -21,17 +21,17 @@ builder.Host.UseSerilog((context, services, configuration) => { configuration.Re
 
 builder.Services.AddControllers();
 
-// Add Redis
-builder.Services
-    .AddStackExchangeRedisCache(options =>
-    {
-        options.Configuration =
-            builder.Configuration
-                .GetConnectionString("Redis");
+// Add Redis +
+//builder.Services
+//    .AddStackExchangeRedisCache(options =>
+//    {
+//        options.Configuration =
+//            builder.Configuration
+//                .GetConnectionString("Redis");
 
-        options.InstanceName =
-            "RedisDemo:";
-    });
+//        options.InstanceName =
+//            "RedisDemo:";
+//    });
 //builder.Services.AddStackExchangeRedisCache(options =>
 //{
 //    options.Configuration =
@@ -74,7 +74,7 @@ app.UseAuthorization();
 // 1 Way : Whenever Don't Use Extension Method for RequestLoggingMiddleware
 //app.UseMiddleware<RequestLoggingMiddleware>();
 // 2 Way : Use Extension Method for RequestLoggingMiddleware
-app.UseRequestLogging();
+//app.UseRequestLogging();
 
 app.MapControllers();
 

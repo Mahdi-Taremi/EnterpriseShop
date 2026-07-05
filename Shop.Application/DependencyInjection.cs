@@ -29,6 +29,10 @@ namespace Shop.Application
                     Assembly.GetExecutingAssembly());
             });
 
+            services.AddTransient(
+                typeof(IPipelineBehavior<,>),
+                typeof(LoggingBehavior<,>));
+
             services.AddValidatorsFromAssembly(
             Assembly.GetExecutingAssembly());
 
@@ -38,8 +42,8 @@ namespace Shop.Application
 
             services.AddTransient(
                 typeof(IPipelineBehavior<,>),
-                typeof(LoggingBehavior<,>));
-            
+                typeof(PerformanceBehavior<,>));
+
             return services;
         }
     }
