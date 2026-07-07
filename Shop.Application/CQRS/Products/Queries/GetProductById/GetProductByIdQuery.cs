@@ -1,6 +1,4 @@
 ﻿using MediatR;
-using Shop.Application.Common.Interfaces;
-using Shop.Application.Common.Results;
 using Shop.Application.CQRS.Products.DTOs;
 using System;
 using System.Collections.Generic;
@@ -12,6 +10,5 @@ namespace Shop.Application.CQRS.Products.Queries.GetProductById
 {
     public sealed record GetProductByIdQuery(
       Guid Id)
-      : ICommand<Result<Guid>>;
-    //ProductDto
+      : IRequest<ProductDto>;
 }

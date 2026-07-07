@@ -28,9 +28,10 @@ namespace Shop.Application.Behaviors
             var response =
                 await next();
 
-            if (request is ICommand<TResponse>)
+            if (request.GetType().Name.EndsWith("Command"))
             {
-                await _unitOfWork.SaveChangesAsync(cancellationToken);
+                await _unitOfWork.SaveChangesAsync(
+                    cancellationToken);
             }
 
             return response;
