@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Shop.Application.Common.Interfaces;
 using Shop.Application.Common.Results;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,5 @@ namespace Shop.Application.CQRS.Products.Commands.UpdateProduct
      int Stock
      //,byte[] RowVersion
         )
-     : IRequest<Result>;
+     : ICommand<Result>;
 }

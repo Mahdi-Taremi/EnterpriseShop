@@ -2,6 +2,7 @@ using Microsoft.OpenApi;
 using Redis_Example.Middleware;
 using Serilog;
 using Shop.Application;
+using Shop.Application.Common.Settings;
 using Shop.Infrastructure.Context;
 using Shop.Persistence.Context;
 using Shop.Persistence.Database;
@@ -51,6 +52,9 @@ builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddInfrastructure();
 
 builder.Services.AddApplication();
+
+builder.Services.Configure<PerformanceSettings>(
+    builder.Configuration.GetSection("PerformanceSettings"));
 
 var app = builder.Build();
 

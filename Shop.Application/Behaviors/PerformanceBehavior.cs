@@ -1,5 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Shop.Application.Common.Settings;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,13 +17,14 @@ namespace Shop.Application.Behaviors
     {
         private readonly ILogger<PerformanceBehavior<TRequest, TResponse>> _logger;
 
-        // Config with appsettings.json for others time - Hard Code
-        private const int WarningThresholdMilliseconds = 200;
+        private readonly PerformanceSettings _settings;
 
         public PerformanceBehavior(
-            ILogger<PerformanceBehavior<TRequest, TResponse>> logger)
+            ILogger<PerformanceBehavior<TRequest, TResponse>> logger,
+            IOptions<PerformanceSettings> options)
         {
             _logger = logger;
+            _settings = options.Value;
         }
 
         public async Task<TResponse> Handle(
@@ -35,7 +38,7 @@ namespace Shop.Application.Behaviors
 
             stopwatch.Stop();
 
-            if (stopwatch.ElapsedMilliseconds > WarningThresholdMilliseconds)
+            if (stopwatch.ElapsedMilliseconds > _settings.WarningThresholdMilliseconds)
             {
                 _logger.LogWarning(
                     "**** Slow Request: {RequestName} executed in {ElapsedMilliseconds} ms. ****",
