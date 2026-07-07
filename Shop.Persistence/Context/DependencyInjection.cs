@@ -3,11 +3,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shop.Application.Common.Interfaces;
 using Shop.Application.Common.Interfaces.Database;
+using Shop.Application.Common.Interfaces.Domain;
 using Shop.Application.Common.Interfaces.Repositories;
 using Shop.Persistence.Database;
 using Shop.Persistence.Database.Seed;
-using Shop.Persistence.Repositories;
 using Shop.Persistence.Infrastructure;
+using Shop.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,11 @@ namespace Shop.Persistence.Context
             services.AddScoped<IProductRepository, ProductRepository>();
 
             services.AddScoped<IUnitOfWork,UnitOfWork>();
+
+            services.AddScoped<
+                IDomainEventDispatcher,
+                DomainEventDispatcher>();
+
             return services;
         }
     }

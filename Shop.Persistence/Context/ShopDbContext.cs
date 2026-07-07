@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shop.Application.Common.Interfaces.Database;
+using Shop.Application.Common.Interfaces.Domain;
 using Shop.Application.Common.Interfaces.Services;
+using Shop.Application.Common.Results;
+using Shop.Domain.Common.Events;
 using Shop.Domain.Entities;
 using Shop.Domain.Entities.Base;
 using System;
@@ -14,12 +17,14 @@ namespace Shop.Persistence.Context
     public class ShopDbContext : DbContext, IApplicationDbContext
     {
         private readonly IDateTimeProvider _dateTime;
-
         private readonly ICurrentUserService _currentUser;
-        public ShopDbContext(DbContextOptions<ShopDbContext> options, IDateTimeProvider dateTime, ICurrentUserService currentUser) : base(options)
+        private readonly IDomainEventDispatcher _dispatcher;
+
+        public ShopDbContext(DbContextOptions<ShopDbContext> options, IDateTimeProvider dateTime, ICurrentUserService currentUser, IDomainEventDispatcher dispatcher) : base(options)
         {
             _dateTime = dateTime;
             _currentUser = currentUser;
+            _dispatcher = dispatcher;
         }
 
         // ReView 
@@ -70,7 +75,27 @@ namespace Shop.Persistence.Context
                         break;
                 }
             }
-            return await base.SaveChangesAsync(cancellationToken);
+            var domainEvents = ChangeTracker
+                .Entries<BaseEntity>()
+                .Select(x => x.Entity)
+                .SelectMany(x => x.DomainEvents)
+                .ToList();
+
+            var result =
+              await base.SaveChangesAsync(cancellationToken);
+
+            foreach (var entity in ChangeTracker
+                .Entries<BaseEntity>()
+                .Select(x => x.Entity))
+            {
+                entity.ClearDomainEvents();
+            }
+            await _dispatcher.DispatchAsync(
+                domainEvents,
+                cancellationToken);
+
+            return result;
+            //return await base.SaveChangesAsync(cancellationToken);
         }
         public DbSet<Product> Products => Set<Product>();
     }
