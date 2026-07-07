@@ -1,4 +1,5 @@
 ﻿using Shop.Domain.Entities.Base;
+using Shop.Domain.Events.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Shop.Domain.Entities
         public int Stock { get; set; }
         private Product()
         {
+         AddDomainEvent(new ProductCreatedDomainEvent(Id,Name));
         }
 
         public Product(string name, decimal price, int stock)
