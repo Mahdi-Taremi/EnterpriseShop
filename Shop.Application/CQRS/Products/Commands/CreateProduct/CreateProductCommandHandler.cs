@@ -4,6 +4,7 @@ using Shop.Application.Common.Interfaces.Database;
 using Shop.Application.Common.Interfaces.Repositories;
 using Shop.Application.Common.Results;
 using Shop.Domain.Entities;
+using Shop.Domain.Events.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,11 @@ namespace Shop.Application.CQRS.Products.Commands.CreateProduct
         : IRequestHandler<CreateProductCommand, Result<Guid>>
     {
         private readonly IProductRepository _repository;
-        private readonly IUnitOfWork _unitOfWork;
         public CreateProductCommandHandler(
-            IProductRepository repository,
-            IUnitOfWork unitOfWork)
+            IProductRepository repository
+            )
         {
             _repository = repository;
-            _unitOfWork = unitOfWork;
         }
 
         public async Task<Result<Guid>> Handle(
@@ -39,8 +38,6 @@ namespace Shop.Application.CQRS.Products.Commands.CreateProduct
                 product,
                 cancellationToken);
 
-            await _unitOfWork.SaveChangesAsync(
-                cancellationToken);
 
             return Result<Guid>.Success(product.Id);
         }

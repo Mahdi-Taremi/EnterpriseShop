@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Shop.Persistence.Context;
+using Shop.Persistence.Infrastructure.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,8 @@ namespace Shop.Persistence.DesignTime
             return new ShopDbContext(
              optionsBuilder.Options,
              new NullDateTimeProvider(),
-             new NullCurrentUserService());
+             new NullCurrentUserService(),
+             new NullDomainEventDispatcher());
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using MediatR;
+using Shop.Application.Common.Errors;
 using Shop.Application.Common.Interfaces.Database;
 using Shop.Application.Common.Interfaces.Repositories;
 using Shop.Application.Common.Results;
-using Shop.Application.Common.Errors;
+using Shop.Domain.Events.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,11 @@ namespace Shop.Application.CQRS.Products.Commands.UpdateProduct
     {
         private readonly IProductRepository _repository;
 
-        private readonly IApplicationDbContext _context;
-
         public UpdateProductCommandHandler(
-            IProductRepository repository,
-            IApplicationDbContext context)
+            IProductRepository repository
+            )
         {
             _repository = repository;
-            _context = context;
         }
 
         public async Task<Result> Handle(
@@ -45,9 +43,6 @@ namespace Shop.Application.CQRS.Products.Commands.UpdateProduct
                 request.Stock);
 
             _repository.Update(product);
-
-            //await _context.SaveChangesAsync(
-            //    cancellationToken);
 
             return Result.Success();
         }

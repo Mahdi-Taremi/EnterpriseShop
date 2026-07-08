@@ -8,6 +8,7 @@ using Shop.Application.Common.Interfaces.Repositories;
 using Shop.Persistence.Database;
 using Shop.Persistence.Database.Seed;
 using Shop.Persistence.Infrastructure;
+using Shop.Persistence.Infrastructure.Domain;
 using Shop.Persistence.Repositories;
 using System;
 using System.Collections.Generic;

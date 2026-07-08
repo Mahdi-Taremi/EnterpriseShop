@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace Shop.Domain.Events.Products
 {
-    public sealed class ProductCreatedDomainEvent
-    : IDomainEvent
+    public sealed class ProductDeletedDomainEvent
+        : IDomainEvent
     {
         public Product Product { get; }
 
-        public ProductCreatedDomainEvent(Product product)
+        public ProductDeletedDomainEvent(
+            Product product)
         {
             Product = product;
         }

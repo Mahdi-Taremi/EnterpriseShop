@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Shop.Application.Common.Interfaces.Domain;
 using Shop.Domain.Common.Events;
 using System;
 using System.Collections.Generic;
@@ -6,10 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.Persistence.DomainEvents
+namespace Shop.Persistence.Infrastructure.Domain
 {
     public sealed class DomainEventDispatcher
-     : IDomainEventDispatcher
+    : IDomainEventDispatcher
     {
         private readonly IMediator _mediator;
 
@@ -20,10 +21,10 @@ namespace Shop.Persistence.DomainEvents
         }
 
         public async Task DispatchAsync(
-            IEnumerable<IDomainEvent> events,
+            IEnumerable<IDomainEvent> domainEvents,
             CancellationToken cancellationToken = default)
         {
-            foreach (var domainEvent in events)
+            foreach (var domainEvent in domainEvents)
             {
                 await _mediator.Publish(
                     domainEvent,

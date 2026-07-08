@@ -81,8 +81,6 @@ namespace Shop.Persistence.Context
                 .SelectMany(x => x.DomainEvents)
                 .ToList();
 
-            var result =
-              await base.SaveChangesAsync(cancellationToken);
 
             foreach (var entity in ChangeTracker
                 .Entries<BaseEntity>()
@@ -90,12 +88,15 @@ namespace Shop.Persistence.Context
             {
                 entity.ClearDomainEvents();
             }
+
+            var result =
+              await base.SaveChangesAsync(cancellationToken);
+
             await _dispatcher.DispatchAsync(
                 domainEvents,
                 cancellationToken);
 
             return result;
-            //return await base.SaveChangesAsync(cancellationToken);
         }
         public DbSet<Product> Products => Set<Product>();
     }

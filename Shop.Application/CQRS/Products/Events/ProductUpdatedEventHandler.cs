@@ -9,23 +9,23 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.CQRS.Products.Events
 {
-    public sealed class ProductCreatedEventHandler
-    : INotificationHandler<ProductCreatedDomainEvent>
+     public sealed class ProductUpdatedEventHandler
+    : INotificationHandler<ProductUpdatedDomainEvent>
     {
-        private readonly ILogger<ProductCreatedEventHandler> _logger;
+        private readonly ILogger<ProductUpdatedEventHandler> _logger;
 
-        public ProductCreatedEventHandler(
-            ILogger<ProductCreatedEventHandler> logger)
+        public ProductUpdatedEventHandler(
+            ILogger<ProductUpdatedEventHandler> logger)
         {
             _logger = logger;
         }
 
         public Task Handle(
-            ProductCreatedDomainEvent notification,
+            ProductUpdatedDomainEvent notification,
             CancellationToken cancellationToken)
         {
             _logger.LogInformation(
-                "**** Product Created : {Id} - {Name} ****",
+                "**** Product Update : {Id} - {Name} ****",
                 notification.Product.Id,
                 notification.Product.Name);
 

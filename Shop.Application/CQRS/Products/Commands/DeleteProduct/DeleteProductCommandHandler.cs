@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿    using MediatR;
 using Shop.Application.Common.Errors;
 using Shop.Application.Common.Interfaces.Database;
 using Shop.Application.Common.Interfaces.Repositories;
 using Shop.Application.Common.Results;
+using Shop.Domain.Events.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,11 @@ namespace Shop.Application.CQRS.Products.Commands.DeleteProduct
     {
         private readonly IProductRepository _repository;
 
-        private readonly IApplicationDbContext _context;
-
         public DeleteProductCommandHandler(
-            IProductRepository repository,
-            IApplicationDbContext context)
+            IProductRepository repository
+            )
         {
             _repository = repository;
-            _context = context;
         }
 
         public async Task<Result> Handle(
@@ -39,10 +37,9 @@ namespace Shop.Application.CQRS.Products.Commands.DeleteProduct
                 return Result.Failure(
                     ProductErrors.NotFound);
 
+            product.Delete();
             _repository.Delete(product);
 
-            //await _context.SaveChangesAsync(
-            //    cancellationToken);
 
             return Result.Success();
         }
