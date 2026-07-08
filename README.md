@@ -1,6 +1,7 @@
 1 Overview : 
-A production-ready ASP.NET Core Web API demonstrating Clean Architecture, CQRS, DDD principles and Enterprise Application Patterns.
-This project is designed as a portfolio project to demonstrate software engineering best practices rather than just CRUD implementation.
+# 🛒 Shop API : Enterprise ASP.NET Core Web API built with Clean Architecture, CQRS, DDD and MediatR.
+Shop API is a production-oriented sample project demonstrating modern backend architecture using ASP.NET Core and Domain-Driven Design principles.
+The project focuses on maintainability, scalability and separation of concerns rather than CRUD-only implementation.
 
 2 Features : 
 - Clean Architecture
@@ -22,14 +23,15 @@ This project is designed as a portfolio project to demonstrate software engineer
 - Optimistic Concurrency
 
 3 Architecture : 
-The project follows Clean Architecture principles.
-Presentation
-↓
-Application
-↓
-Domain
-↓
-Persistence
+- Clean Architecture
+- Domain Driven Design (DDD)
+- CQRS
+- MediatR
+- Repository Pattern
+- Specification Pattern
+- Unit of Work
+- Domain Events
+- Pipeline Behaviors
 
 4 Project Structure : 
 src/
@@ -90,3 +92,6 @@ Cross-cutting concerns such as validation, logging and transactions should not b
 - Docker Compose
 
 11 License
+
+## Author
+Mahdi Taremi
