@@ -16,15 +16,14 @@ namespace Shop.Persistence.Context
 {
     public class ShopDbContext : DbContext, IApplicationDbContext
     {
-        private readonly IDateTimeProvider _dateTime;
-        private readonly ICurrentUserService _currentUser;
         private readonly IDomainEventDispatcher _dispatcher;
+        private readonly IAuditService _auditService;
 
-        public ShopDbContext(DbContextOptions<ShopDbContext> options, IDateTimeProvider dateTime, ICurrentUserService currentUser, IDomainEventDispatcher dispatcher) : base(options)
+        public ShopDbContext(DbContextOptions<ShopDbContext> options, IDomainEventDispatcher dispatcher, 
+            IAuditService auditService) : base(options)
         {
-            _dateTime = dateTime;
-            _currentUser = currentUser;
             _dispatcher = dispatcher;
+            _auditService = auditService;
         }
 
         // ReView 
@@ -43,38 +42,8 @@ namespace Shop.Persistence.Context
         public override async Task<int> SaveChangesAsync(
        CancellationToken cancellationToken = default)
         {
-            foreach (var entry in ChangeTracker.Entries<BaseSoftDeleteEntity>())
-            {
-                switch (entry.State)
-                {
-                    case EntityState.Added:
+            _auditService.ApplyAuditInformation(ChangeTracker.Entries());
 
-                        entry.Entity.CreatedAt = _dateTime.UtcNow;
-
-                        entry.Entity.CreatedBy = _currentUser.UserId;
-
-                        break;
-
-                    case EntityState.Modified:
-
-                        entry.Entity.LastModifiedAt = _dateTime.UtcNow;
-
-                        entry.Entity.LastModifiedBy = _currentUser.UserId;
-
-                        break;
-                    case EntityState.Deleted:
-
-                        entry.State = EntityState.Modified;
-
-                        entry.Entity.IsDeleted = true;
-
-                        entry.Entity.DeletedAt = _dateTime.UtcNow;
-
-                        entry.Entity.DeletedBy = _currentUser.UserId;
-
-                        break;
-                }
-            }
             var domainEvents = ChangeTracker
                 .Entries<BaseEntity>()
                 .Select(x => x.Entity)

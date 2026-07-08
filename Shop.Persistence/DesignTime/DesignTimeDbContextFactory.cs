@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Design;
 using Shop.Persistence.Context;
 using Shop.Persistence.Infrastructure.Domain;
+using Shop.Persistence.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,9 @@ namespace Shop.Persistence.DesignTime
 
             // When use Migration -> Beacuse Non-existence ServiceProvider
             return new ShopDbContext(
-             optionsBuilder.Options,
-             new NullDateTimeProvider(),
-             new NullCurrentUserService(),
-             new NullDomainEventDispatcher());
+                optionsBuilder.Options,
+                new NullDomainEventDispatcher(),
+                new NullAuditService());
         }
     }
 }

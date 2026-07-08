@@ -5,11 +5,13 @@ using Shop.Application.Common.Interfaces;
 using Shop.Application.Common.Interfaces.Database;
 using Shop.Application.Common.Interfaces.Domain;
 using Shop.Application.Common.Interfaces.Repositories;
+using Shop.Application.Common.Interfaces.Services;
 using Shop.Persistence.Database;
 using Shop.Persistence.Database.Seed;
 using Shop.Persistence.Infrastructure;
 using Shop.Persistence.Infrastructure.Domain;
 using Shop.Persistence.Repositories;
+using Shop.Persistence.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,6 +48,8 @@ namespace Shop.Persistence.Context
             services.AddScoped<
                 IDomainEventDispatcher,
                 DomainEventDispatcher>();
+
+            services.AddScoped<IAuditService, AuditService>();
 
             return services;
         }

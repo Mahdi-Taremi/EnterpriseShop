@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Shop.Application.Common.Interfaces.Domain;
 using Shop.Domain.Common.Events;
 using System;
@@ -12,12 +13,16 @@ namespace Shop.Persistence.Infrastructure.Domain
     public sealed class DomainEventDispatcher
     : IDomainEventDispatcher
     {
-        private readonly IMediator _mediator;
+        private readonly IPublisher _publisher;
+
+        private readonly ILogger<DomainEventDispatcher> _logger;
 
         public DomainEventDispatcher(
-            IMediator mediator)
+            IPublisher publisher,
+            ILogger<DomainEventDispatcher> logger)
         {
-            _mediator = mediator;
+            _publisher = publisher;
+            _logger = logger;
         }
 
         public async Task DispatchAsync(
@@ -26,9 +31,19 @@ namespace Shop.Persistence.Infrastructure.Domain
         {
             foreach (var domainEvent in domainEvents)
             {
-                await _mediator.Publish(
-                    domainEvent,
-                    cancellationToken);
+                try
+                {
+                    await _publisher.Publish(
+                        domainEvent,
+                        cancellationToken);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(
+                        ex,
+                        "Error while publishing domain event {DomainEvent}",
+                        domainEvent.GetType().Name);
+                }
             }
         }
     }

@@ -17,8 +17,6 @@ namespace Shop.Domain.Entities
         public int Stock { get; set; }
         private Product()
         {
-         //AddDomainEvent(new ProductCreatedDomainEvent(Id,Name));
-         //AddDomainEvent(new ProductCreatedDomainEvent(this));
         }
 
         public Product(string name, decimal price, int stock)
@@ -26,8 +24,15 @@ namespace Shop.Domain.Entities
             Name = name;
             Price = price;
             Stock = stock;
-            AddDomainEvent(new ProductCreatedDomainEvent(this));
+        }
+        public static Product Create(string name,decimal price,int stock)
+        {
+            var product = new Product(name, price, stock);
 
+            product.AddDomainEvent(
+                new ProductCreatedDomainEvent(product));
+
+            return product;
         }
         public void Update(string name,decimal price,int stock)
         {
