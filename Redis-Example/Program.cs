@@ -4,7 +4,7 @@ using Serilog;
 using Shop.Application;
 using Shop.Application.Common.Settings;
 using Shop.Infrastructure.Context;
-using Shop.Persistence.Context;
+using Shop.Persistence;
 using Shop.Persistence.Database;
 
 //1. Add Serilog +

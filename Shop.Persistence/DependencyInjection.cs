@@ -6,6 +6,7 @@ using Shop.Application.Common.Interfaces.Database;
 using Shop.Application.Common.Interfaces.Domain;
 using Shop.Application.Common.Interfaces.Repositories;
 using Shop.Application.Common.Interfaces.Services;
+using Shop.Persistence.Context;
 using Shop.Persistence.Database;
 using Shop.Persistence.Database.Seed;
 using Shop.Persistence.Infrastructure;
@@ -18,7 +19,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shop.Persistence.Context
+namespace Shop.Persistence
 {
     public static class DependencyInjection
     {
@@ -50,6 +51,8 @@ namespace Shop.Persistence.Context
                 DomainEventDispatcher>();
 
             services.AddScoped<IAuditService, AuditService>();
+
+            services.AddScoped<IDomainEventCollector,DomainEventCollector>();
 
             return services;
         }

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.37411.7
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redis-Example", "Redis-Example\Redis-Example.csproj", "{76A9F1EB-73DA-4F15-8020-BD96B141CF94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnterpriseShopAPI", "Redis-Example\EnterpriseShopAPI.csproj", "{76A9F1EB-73DA-4F15-8020-BD96B141CF94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Domain", "Shop.Domain\Shop.Domain.csproj", "{CF43599C-0FDD-4A47-85DA-B0F2250CB557}"
 EndProject
@@ -12,6 +12,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Persistence", "Shop.Persistence\Shop.Persistence.csproj", "{6643057A-B3AE-4F05-9FF7-BFA807B9F060}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Infrastructure", "Shop.Infrastructure\Shop.Infrastructure.csproj", "{49DF0E85-CFA3-46E8-880C-BF9EAD7DE7D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{C68EDBAF-8824-48A6-B2E9-82C8B1CCF37F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "diagrams", "diagrams", "{11C83627-B7BC-4B83-8156-C50DCFD997F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "architecture", "architecture", "{329FFE3B-5181-4ACE-8CE2-88A2392E7494}"
+	ProjectSection(SolutionItems) = preProject
+		architecture.md = architecture.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{48D58DCE-E819-4588-B629-1122B5F71AE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +55,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C68EDBAF-8824-48A6-B2E9-82C8B1CCF37F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{11C83627-B7BC-4B83-8156-C50DCFD997F7} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{329FFE3B-5181-4ACE-8CE2-88A2392E7494} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{48D58DCE-E819-4588-B629-1122B5F71AE2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8E279B66-0AEE-41A5-A8C0-D45617D6CE4A}

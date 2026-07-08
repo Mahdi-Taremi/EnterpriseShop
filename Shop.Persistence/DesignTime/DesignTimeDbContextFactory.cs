@@ -25,7 +25,8 @@ namespace Shop.Persistence.DesignTime
             return new ShopDbContext(
                 optionsBuilder.Options,
                 new NullDomainEventDispatcher(),
-                new NullAuditService());
+                new NullAuditService(),
+                 new NullDomainEventCollector());
         }
     }
 }

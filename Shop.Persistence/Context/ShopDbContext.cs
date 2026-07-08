@@ -18,12 +18,14 @@ namespace Shop.Persistence.Context
     {
         private readonly IDomainEventDispatcher _dispatcher;
         private readonly IAuditService _auditService;
+        private readonly IDomainEventCollector _collector;
 
         public ShopDbContext(DbContextOptions<ShopDbContext> options, IDomainEventDispatcher dispatcher, 
-            IAuditService auditService) : base(options)
+            IAuditService auditService, IDomainEventCollector collector) : base(options)
         {
             _dispatcher = dispatcher;
             _auditService = auditService;
+            _collector = collector;
         }
 
         // ReView 
@@ -44,19 +46,8 @@ namespace Shop.Persistence.Context
         {
             _auditService.ApplyAuditInformation(ChangeTracker.Entries());
 
-            var domainEvents = ChangeTracker
-                .Entries<BaseEntity>()
-                .Select(x => x.Entity)
-                .SelectMany(x => x.DomainEvents)
-                .ToList();
+            var domainEvents = _collector.Collect(ChangeTracker.Entries());
 
-
-            foreach (var entity in ChangeTracker
-                .Entries<BaseEntity>()
-                .Select(x => x.Entity))
-            {
-                entity.ClearDomainEvents();
-            }
 
             var result =
               await base.SaveChangesAsync(cancellationToken);
