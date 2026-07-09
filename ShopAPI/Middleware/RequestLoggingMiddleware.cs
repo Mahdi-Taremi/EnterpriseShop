@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Redis_Example.Middleware
+namespace ShopAPI.Middleware
 {
     public class RequestLoggingMiddleware
     {

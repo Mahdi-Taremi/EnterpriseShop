@@ -6,7 +6,7 @@ using ServiceStack.Script;
 using System.Text;
 using RouteAttribute = ServiceStack.RouteAttribute;
 
-namespace Redis_Example.Controllers
+namespace ShopAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -2,7 +2,7 @@
 using FluentValidation;
 using System.Text.Json;
 
-namespace Redis_Example.Middleware
+namespace ShopAPI.Middleware
 {
     public sealed class ExceptionHandlingMiddleware
     {

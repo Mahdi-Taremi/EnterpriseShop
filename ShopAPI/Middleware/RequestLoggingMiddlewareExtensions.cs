@@ -1,4 +1,4 @@
-﻿namespace Redis_Example.Middleware
+﻿namespace ShopAPI.Middleware
 {
     public static class RequestLoggingMiddlewareExtensions
     {

@@ -1,6 +1,6 @@
 using Microsoft.OpenApi;
-using Redis_Example.Extensions;
-using Redis_Example.Middleware;
+using ShopAPI.Extensions;
+using ShopAPI.Middleware;
 using Serilog;
 using Shop.Application;
 using Shop.Application.Common.Settings;
@@ -10,7 +10,7 @@ using Shop.Persistence.Database;
 using System.Reflection;
 
 //1. Add Serilog +
-//Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
+//Log.Logger = new LoggerConfiguration().CreateBootstrapLogger(
 
 
 var builder = WebApplication.CreateBuilder(args);
