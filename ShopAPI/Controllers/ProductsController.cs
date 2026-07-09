@@ -6,7 +6,7 @@ using Shop.Application.CQRS.Products.Commands.UpdateProduct;
 using Shop.Application.CQRS.Products.Queries;
 using Shop.Application.CQRS.Products.Queries.GetProductById;
 
-namespace Redis_Example.Controllers
+namespace ShopAPI.Controllers
 {
     //[Tags("Products")]
     [Route("api/[controller]")]

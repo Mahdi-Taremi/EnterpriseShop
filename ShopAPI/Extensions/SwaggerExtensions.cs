@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi;
 using System.Reflection;
 
-namespace Redis_Example.Extensions
+namespace ShopAPI.Extensions
 {
     public static class SwaggerExtensions
     {
@@ -35,13 +35,13 @@ namespace Redis_Example.Extensions
                         }
                     });
 
-                var xmlFile =
-                    $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                //var xmlFile =
+                //    $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 
-                var xmlPath =
-                    Path.Combine(AppContext.BaseDirectory, xmlFile);
+                //var xmlPath =
+                //    Path.Combine(AppContext.BaseDirectory, xmlFile);
 
-                options.IncludeXmlComments(xmlPath);
+                //options.IncludeXmlComments(xmlPath);
             });
 
             return services;
