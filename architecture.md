@@ -66,6 +66,7 @@
                 +---------------------+
 ```
 
+
 API
  │
  ▼
@@ -83,19 +84,14 @@ Persistence
  │
  ▼
 Application
+
 
 ---> This : 
 
 API
-
 ↓
-
 Application
-
 ↓
-
 Domain
-
 ↑
-
 Persistence
