@@ -1,86 +1,105 @@
 1 Overview : 
-# 🛒 Shop API : Enterprise ASP.NET Core Web API built with Clean Architecture, CQRS, DDD and MediatR.
-Shop API is a production-oriented sample project demonstrating modern backend architecture using ASP.NET Core and Domain-Driven Design principles.
-The project focuses on maintainability, scalability and separation of concerns rather than CRUD-only implementation.
+# 🛒 Enterprise Shop API : Production-ready ASP.NET Core Web API built with Clean Architecture, CQRS, Domain-Driven Design and modern engineering practices.
+Enterprise Shop is a production-oriented ASP.NET Core Web API demonstrating modern backend architecture and engineering practices. The project is built around Clean Architecture, CQRS, Domain-Driven Design (DDD), MediatR, Repository Pattern, Specification Pattern, Domain Events, and Pipeline Behaviors with a strong focus on maintainability, scalability, and testability.
+
+![.NET](https://img.shields.io/badge/.NET-8-blue)
+
+![CQRS](https://img.shields.io/badge/CQRS-MediatR-success)
+
+![Architecture](https://img.shields.io/badge/Clean%20Architecture-DDD-blueviolet)
+
+![License](https://img.shields.io/badge/license-MIT-green)
+
+![Status](https://img.shields.io/badge/status-active-success)
 
 2 Features : 
-- Clean Architecture
-- CQRS with MediatR
-- Domain Driven Design
-- Generic Repository
-- Specification Pattern
-- Unit of Work
-- Domain Events
-- FluentValidation
-- Pipeline Behaviors
-- Result Pattern
-- Global Exception Handling
-- Soft Delete
-- Audit Trail
-- Pagination
-- SQL Server
-- AutoMapper
-- Optimistic Concurrency
+| Feature                   | Status |
+| ------------------------- | ------ |
+| Clean Architecture        | ✅      |
+| CQRS                      | ✅      |
+| MediatR                   | ✅      |
+| Repository Pattern        | ✅      |
+| Specification Pattern     | ✅      |
+| Unit Of Work              | ✅      |
+| Domain Events             | ✅      |
+| Soft Delete               | ✅      |
+| Validation Pipeline       | ✅      |
+| Logging Pipeline          | ✅      |
+| Performance Pipeline      | ✅      |
+| Transaction Pipeline      | ✅      |
+| Global Exception Handling | ✅      |
+| Pagination                | ✅      |
+| AutoMapper                | ✅      |
+| Swagger                   | ✅      |
+| Redis                     | 🚧     |
+| JWT Authentication        | 🚧     |
+| Docker                    | 🚧     |
+
 
 3 Architecture : 
-- Clean Architecture
-- Domain Driven Design (DDD)
-- CQRS
-- MediatR
-- Repository Pattern
-- Specification Pattern
-- Unit of Work
-- Domain Events
-- Pipeline Behaviors
+
+Presentation (API)
+↓
+Application
+↓
+Domain
+↑
+Persistence
+
+Detailed architecture documentation is available in /architecture.md.
 
 4 Project Structure : 
 src/
-Shop.Api
+ShopAPI
 Shop.Application
 Shop.Domain
 Shop.Persistence
 
 5 Technologies : 
-- ASP.NET Core 8
-- Entity Framework Core
-- SQL Server
-- MediatR
-- FluentValidation
-- AutoMapper
-- Swagger
+| Category      | Technology               |
+| ------------- | ------------------------ |
+| Framework     | ASP.NET Core 8           |
+| Language      | C#                       |
+| ORM           | EF Core                  |
+| Database      | SQL Server               |
+| CQRS          | MediatR                  |
+| Validation    | FluentValidation         |
+| Mapping       | AutoMapper               |
+| Logging       | Microsoft ILogger        |
+| Documentation | Swagger                  |
+| Architecture  | Clean Architecture + DDD |
 - Serilog (Upcoming)
 - Redis (Upcoming)
 
-6 Design Patterns
+6 Running :
+1) git clone ...
+2) dotnet restore
+3) dotnet ef database update
+4) dotnet run
 
 7 Architecture Decisions : 
+- ADR-001 Clean Architecture
+- ADR-002 Domain Events
+- ADR-003 Soft Delete
+
 - Why Clean Architecture?
 Business rules should remain independent of infrastructure concerns.
 This separation improves maintainability, testability and scalability.
-
 - Why CQRS?
 Commands and Queries have different responsibilities.
 Separating them improves readability, validation and future scalability.
-
 - Why Repository Pattern?
 Repositories isolate persistence concerns from the application layer.
 This allows the business logic to remain persistence-agnostic.
-
 - Why Specification Pattern?
 Instead of writing LINQ queries everywhere, reusable specifications encapsulate querying logic.
-
 - Why Domain Events?
 Entities should notify the outside world when something important happens without directly depending on infrastructure.
-
 - Why Pipeline Behaviors?
 Cross-cutting concerns such as validation, logging and transactions should not be duplicated inside handlers.
 
 
-8 Getting Started
-
-9 API Endpoints
-
-10 Roadmap :
+8 Roadmap :
 - Authentication (JWT)
 - Redis Caching
 - Serilog
@@ -88,10 +107,9 @@ Cross-cutting concerns such as validation, logging and transactions should not b
 - Docker
 - API Versioning
 - Rate Limiting
-- GitHub Actions
 - Docker Compose
 
-11 License
+10 License
 
 ## Author
 Mahdi Taremi
