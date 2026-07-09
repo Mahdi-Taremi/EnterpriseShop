@@ -8,6 +8,7 @@ using Shop.Application.CQRS.Products.Queries.GetProductById;
 
 namespace Redis_Example.Controllers
 {
+    //[Tags("Products")]
     [Route("api/[controller]")]
     [ApiController]
     public sealed class ProductsController : ControllerBase
@@ -20,6 +21,10 @@ namespace Redis_Example.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Creates a new product.
+        /// </summary>
+        [ActionName(nameof(Create))]
         [HttpPost]
         public async Task<IActionResult> Create(
             CreateProductCommand command,
@@ -36,6 +41,10 @@ namespace Redis_Example.Controllers
             return Ok(result.Value);
         }
 
+        /// <summary>
+        /// Get All products.
+        /// </summary>
+        [ActionName(nameof(GetAll))]
         [HttpGet]
         public async Task<IActionResult> GetAll(
              int pageNumber = 1,
@@ -54,6 +63,10 @@ namespace Redis_Example.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Gets a product by id.
+        /// </summary>
+        [ActionName(nameof(GetById))]
         [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetById(
             Guid id,
@@ -66,6 +79,11 @@ namespace Redis_Example.Controllers
 
             return Ok(result);
         }
+
+        /// <summary>
+        /// Update a product.
+        /// </summary>
+        [ActionName(nameof(Update))]
         [HttpPut("{id:guid}")]
         public async Task<IActionResult> Update(
             Guid id,
@@ -86,6 +104,10 @@ namespace Redis_Example.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Delete a product.
+        /// </summary>
+        [ActionName(nameof(Delete))]
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(Guid id,CancellationToken cancellationToken)
         {
