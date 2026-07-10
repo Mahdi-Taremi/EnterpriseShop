@@ -30,9 +30,11 @@ namespace Shop.Application.Behaviors
             var requestName = typeof(TRequest).Name;
 
             _logger.LogInformation(
-                "Handling {RequestName}. Payload: {Payload}",
-                requestName,
-                JsonSerializer.Serialize(request));
+              "Handling {RequestName}. Payload: {@Request}",
+              //"Handling {RequestName}. Payload: {Payload}",
+              requestName,
+              request);
+            //JsonSerializer.Serialize(request));
 
             var stopwatch = Stopwatch.StartNew();
 

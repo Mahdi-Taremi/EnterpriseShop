@@ -29,10 +29,15 @@ namespace Shop.Application.CQRS.Products.Commands.CreateProduct
             CancellationToken cancellationToken)
         {
             var product =
-                new Product(
+                Product.Create(
                     request.Name,
                     request.Price,
                     request.Stock);
+            //var product =
+            //  new Product(
+            //      request.Name,
+            //      request.Price,
+            //      request.Stock);
 
             await _repository.AddAsync(
                 product,

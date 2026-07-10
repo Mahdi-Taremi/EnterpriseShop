@@ -9,6 +9,7 @@ using Shop.Application.Common.Interfaces.Services;
 using Shop.Persistence.Context;
 using Shop.Persistence.Database;
 using Shop.Persistence.Database.Seed;
+using Shop.Persistence.Extensions;
 using Shop.Persistence.Infrastructure;
 using Shop.Persistence.Infrastructure.Domain;
 using Shop.Persistence.Repositories;
@@ -53,6 +54,8 @@ namespace Shop.Persistence
             services.AddScoped<IAuditService, AuditService>();
 
             services.AddScoped<IDomainEventCollector,DomainEventCollector>();
+
+            services.AddDatabaseHealthChecks();
 
             return services;
         }

@@ -1,24 +1,24 @@
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi;
-using ShopAPI.Extensions;
-using ShopAPI.Middleware;
 using Serilog;
 using Shop.Application;
 using Shop.Application.Common.Settings;
 using Shop.Infrastructure.Context;
 using Shop.Persistence;
+using Shop.Persistence.Context;
 using Shop.Persistence.Database;
+using ShopAPI.Extensions;
+using ShopAPI.Middleware;
 using System.Reflection;
 
 //1. Add Serilog +
-//Log.Logger = new LoggerConfiguration().CreateBootstrapLogger(
+//Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 //2. Add Serilog +
-//builder.Host.UseSerilog((context, services, configuration) => { configuration.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services).Enrich.FromLogContext(); });
-//Serilog - HardCode
-//builder.Host.UseSerilog();
+builder.AddSerilogLogging();
 
 // Add services to the container.
 
@@ -68,9 +68,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-// 1 Way : Whenever Don't Use Extension Method for RequestLoggingMiddleware
-//app.UseMiddleware<RequestLoggingMiddleware>();
-// 2 Way : Use Extension Method for RequestLoggingMiddleware
+
+// Use Extension Method for RequestLoggingMiddleware
 //app.UseRequestLogging();
 
 app.MapControllers();
@@ -87,5 +86,11 @@ using (var scope = app.Services.CreateScope())
         await initializer.SeedAsync();
     }
 }
+
+app.MapHealthChecks("/health");
+//app.MapHealthChecks("/health", new HealthCheckOptions
+//{
+//    ResponseWriter = HealthCheckResponseWriter.WriteResponse
+//});
 
 app.Run();
