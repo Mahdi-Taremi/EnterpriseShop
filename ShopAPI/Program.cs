@@ -12,15 +12,13 @@ using ShopAPI.Middleware;
 using System.Reflection;
 
 //1. Add Serilog +
-//Log.Logger = new LoggerConfiguration().CreateBootstrapLogger(
+//Log.Logger = new LoggerConfiguration().CreateBootstrapLogger();
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 //2. Add Serilog +
-//builder.Host.UseSerilog((context, services, configuration) => { configuration.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services).Enrich.FromLogContext(); });
-//Serilog - HardCode
-//builder.Host.UseSerilog();
+builder.AddSerilogLogging();
 
 // Add services to the container.
 
@@ -70,9 +68,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-// 1 Way : Whenever Don't Use Extension Method for RequestLoggingMiddleware
-//app.UseMiddleware<RequestLoggingMiddleware>();
-// 2 Way : Use Extension Method for RequestLoggingMiddleware
+
+// Use Extension Method for RequestLoggingMiddleware
 //app.UseRequestLogging();
 
 app.MapControllers();
