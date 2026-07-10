@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Caching\" />
     <Folder Include="Identity\" />
     <Folder Include="Email\" />
     <Folder Include="Storage\" />

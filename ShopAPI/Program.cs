@@ -1,12 +1,14 @@
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.OpenApi;
-using ShopAPI.Extensions;
-using ShopAPI.Middleware;
 using Serilog;
 using Shop.Application;
 using Shop.Application.Common.Settings;
 using Shop.Infrastructure.Context;
 using Shop.Persistence;
+using Shop.Persistence.Context;
 using Shop.Persistence.Database;
+using ShopAPI.Extensions;
+using ShopAPI.Middleware;
 using System.Reflection;
 
 //1. Add Serilog +
@@ -87,5 +89,11 @@ using (var scope = app.Services.CreateScope())
         await initializer.SeedAsync();
     }
 }
+
+app.MapHealthChecks("/health");
+//app.MapHealthChecks("/health", new HealthCheckOptions
+//{
+//    ResponseWriter = HealthCheckResponseWriter.WriteResponse
+//});
 
 app.Run();
