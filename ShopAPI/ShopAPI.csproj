@@ -38,6 +38,7 @@
   <ItemGroup>
     <Folder Include="Configurations\" />
     <Folder Include="Api\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
   <ItemGroup>

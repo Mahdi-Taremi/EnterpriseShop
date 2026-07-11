@@ -16,11 +16,18 @@ namespace ShopAPI.Extensions
                     .Enrich.FromLogContext()
                     .Enrich.WithMachineName()
                     .Enrich.WithThreadId();
-                    //.WriteTo.Console()
-                    //.WriteTo.File(
-                    //    "Logs/log-.txt",
-                    //    rollingInterval: RollingInterval.Day,
-                    //    retainedFileCountLimit: 30);
+                    //.MinimumLevel.Information()
+                    //.MinimumLevel.Override(
+                    //    "Microsoft.EntityFrameworkCore",
+                    //    Serilog.Events.LogEventLevel.Warning)
+                    //.MinimumLevel.Override(
+                    //    "Microsoft.EntityFrameworkCore.Database.Command",
+                    //    Serilog.Events.LogEventLevel.Information);
+                //.WriteTo.Console()
+                //.WriteTo.File(
+                //    "Logs/log-.txt",
+                //    rollingInterval: RollingInterval.Day,
+                //    retainedFileCountLimit: 30);
             });
 
             return builder;

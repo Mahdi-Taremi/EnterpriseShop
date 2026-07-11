@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Shop.Application.Common.Interfaces;
 using Shop.Application.Common.Interfaces.Database;
 using Shop.Application.Common.Interfaces.Domain;
@@ -28,10 +29,20 @@ namespace Shop.Persistence
         this IServiceCollection services,
          IConfiguration configuration)
         {
-            services.AddDbContext<ShopDbContext>(options =>
+            services.AddDbContext<ShopDbContext>((provider, options) =>
             {
                 options.UseSqlServer(
-                    configuration.GetConnectionString("Local"));
+                configuration.GetConnectionString("Local"));
+
+                //options.UseLoggerFactory(
+                //provider.GetRequiredService<ILoggerFactory>());
+             #if DEBUG
+                options.EnableDetailedErrors();
+                options.EnableSensitiveDataLogging();
+                //options.LogTo(
+                //message => { },
+                //LogLevel.Information);
+             #endif
             });
             services.AddScoped<IApplicationDbContext>(provider =>
             provider.GetRequiredService<ShopDbContext>());
