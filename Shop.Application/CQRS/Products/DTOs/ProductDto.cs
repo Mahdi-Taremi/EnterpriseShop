@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Application.CQRS.Products.DTOs
 {
-    public sealed class ProductDto
+    public sealed record ProductDto
     {
         public Guid Id { get; init; }
         public string Name { get; init; } = string.Empty;
