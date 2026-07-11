@@ -57,6 +57,8 @@ var app = builder.Build();
 
 app.UseCorrelationId();
 
+app.UseSerilogRequestLoggingEx();
+
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
