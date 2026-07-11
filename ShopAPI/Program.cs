@@ -55,6 +55,8 @@ builder.Services.Configure<PerformanceSettings>(
 
 var app = builder.Build();
 
+app.UseCorrelationId();
+
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
