@@ -55,6 +55,13 @@ builder.Services.Configure<PerformanceSettings>(
 
 var app = builder.Build();
 
+app.UseCorrelationId();
+
+// Use Extension Method for RequestLoggingMiddleware
+//app.UseRequestLogging();
+
+app.UseSerilogRequestLoggingEx();
+
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // Configure the HTTP request pipeline.
@@ -69,8 +76,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 
-// Use Extension Method for RequestLoggingMiddleware
-//app.UseRequestLogging();
+
 
 app.MapControllers();
 

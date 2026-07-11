@@ -1,4 +1,6 @@
-﻿namespace ShopAPI.Middleware
+﻿using ShopAPI.Middleware;
+
+namespace ShopAPI.Extensions
 {
     public static class RequestLoggingMiddlewareExtensions
     {
