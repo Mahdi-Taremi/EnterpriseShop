@@ -20,13 +20,9 @@ namespace Shop.Application.Common.Specifications
             Criteria = criteria;
         }
         public Expression<Func<TEntity, bool>>? Criteria { get; }
-        //public Expression<Func<TEntity, bool>>? Criteria { get; protected set; }
         public List<Expression<Func<TEntity, object>>> Includes { get; } = [];
         public Expression<Func<TEntity, object>>? OrderBy { get; protected set; }
-        //public Expression<Func<TEntity, object>>? OrderBy { get; private set; }
-        //public Expression<Func<TEntity, object>>? OrderByDescending { get; private set; }
         public Expression<Func<TEntity, object>>? OrderByDescending { get; protected set; }
-        //public int Skip { get; private set; }
         public int Skip { get; protected set; }
         public int Take { get; protected set; }
         public bool IsPagingEnabled { get; protected set; }

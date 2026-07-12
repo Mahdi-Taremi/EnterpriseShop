@@ -33,11 +33,6 @@ namespace Shop.Application.CQRS.Products.Commands.CreateProduct
                     request.Name,
                     request.Price,
                     request.Stock);
-            //var product =
-            //  new Product(
-            //      request.Name,
-            //      request.Price,
-            //      request.Stock);
 
             await _repository.AddAsync(
                 product,

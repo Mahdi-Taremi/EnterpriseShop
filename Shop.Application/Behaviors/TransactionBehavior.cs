@@ -28,8 +28,6 @@ namespace Shop.Application.Behaviors
             var response =
                 await next();
 
-            //Console.WriteLine(request.GetType().Name);
-            //Console.WriteLine(request is ICommandBase);
             if (request is ICommandBase)
             {
                 await _unitOfWork.SaveChangesAsync(

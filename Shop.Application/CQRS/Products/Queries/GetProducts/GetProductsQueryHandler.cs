@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-//using Shop.Application.Common.Interfaces;
 using Shop.Application.Common.Interfaces.Repositories;
 using Shop.Application.Common.Models.Pagination;
 using Shop.Application.Common.Models.Products;
@@ -54,14 +53,6 @@ namespace Shop.Application.CQRS.Products.Queries.GetProducts
                     specification,
                     cancellationToken);
 
-            //var items =
-            //    products.Select(x => new ProductDto
-            //    {
-            //        Id = x.Id,
-            //        Name = x.Name,
-            //        Price = x.Price,
-            //        Stock = x.Stock
-            //    }).ToList();
             var items =
                 _mapper.Map<List<ProductDto>>(products);
             return new PagedResponse<ProductDto>

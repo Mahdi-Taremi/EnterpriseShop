@@ -14,8 +14,6 @@ namespace Shop.Persistence.Database.Faker
         {
             CustomInstantiator(f =>
                 new Product(
-                    //f.Commerce.ProductName(),
-                    //$"{f.Commerce.ProductName()}-{Guid.NewGuid()}",
                     $"{f.Commerce.ProductName()} {f.UniqueIndex}",
                     decimal.Parse(f.Commerce.Price(50, 5000)),
                     f.Random.Int(1, 100)));

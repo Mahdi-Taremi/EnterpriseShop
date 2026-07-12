@@ -29,8 +29,6 @@ namespace ShopAPI.Controllers
                     AbsoluteExpirationRelativeToNow =
                          TimeSpan.FromMinutes(3)
                  });
-                //connection.Set(Key, Value);
-                 //_cache.SetStringAsync(Key, Value);
             }
             return Ok();
         }
@@ -40,11 +38,6 @@ namespace ShopAPI.Controllers
         {
             var result = _cache.GetString(Key);
             return Ok(result);
-            //using (var connection = new RedisClient())
-            //{
-            //    var result = ASCIIEncoding.ASCII.GetString(connection.Get(Key));
-            //    return Ok(result);
-            //}
         }
 
         [HttpGet("GetRedisAsync")]
@@ -59,15 +52,5 @@ namespace ShopAPI.Controllers
             return Ok(result);
 
         }
-
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

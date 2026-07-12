@@ -31,10 +31,8 @@ namespace Shop.Application.Behaviors
 
             _logger.LogInformation(
               "Handling {RequestName}. Payload: {@Request}",
-              //"Handling {RequestName}. Payload: {Payload}",
               requestName,
               request);
-            //JsonSerializer.Serialize(request));
 
             var stopwatch = Stopwatch.StartNew();
 

@@ -33,15 +33,9 @@ namespace Shop.Persistence
             {
                 options.UseSqlServer(
                 configuration.GetConnectionString("Local"));
-
-                //options.UseLoggerFactory(
-                //provider.GetRequiredService<ILoggerFactory>());
              #if DEBUG
                 options.EnableDetailedErrors();
                 options.EnableSensitiveDataLogging();
-                //options.LogTo(
-                //message => { },
-                //LogLevel.Information);
              #endif
             });
             services.AddScoped<IApplicationDbContext>(provider =>
