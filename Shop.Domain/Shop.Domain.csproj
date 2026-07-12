@@ -7,9 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="ValueObjects\" />
+    <Compile Remove="Exceptions\**" />
+    <Compile Remove="Interfaces\**" />
+    <Compile Remove="ValueObjects\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <EmbeddedResource Remove="ValueObjects\**" />
+    <None Remove="Exceptions\**" />
+    <None Remove="Interfaces\**" />
+    <None Remove="ValueObjects\**" />
   </ItemGroup>
 
   <ItemGroup>

@@ -15,6 +15,17 @@
 
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Compile Remove="Api\**" />
+	  <Compile Remove="Configurations\**" />
+	  <Content Remove="Api\**" />
+	  <Content Remove="Configurations\**" />
+	  <EmbeddedResource Remove="Api\**" />
+	  <EmbeddedResource Remove="Configurations\**" />
+	  <None Remove="Api\**" />
+	  <None Remove="Configurations\**" />
+	</ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="JustCSharp.AspNetCore.FluentValidation" Version="2.17.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.28" />
@@ -36,8 +47,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
-    <Folder Include="Api\" />
     <Folder Include="Logs\" />
   </ItemGroup>
 
