@@ -1,4 +1,6 @@
-﻿# Project Architecture
+This project intentionally demonstrates multiple architectural patterns and practices for learning and showcasing software design skills. In real-world systems, architecture should be chosen based on business complexity rather than applying every pattern by default. 
+
+ # Project Architecture
 
 ```text
                      Client
@@ -67,31 +69,58 @@
 ```
 
 
-API
- │
- ▼
-Application
- │
- ▼
-Domain
+                  Client
+                     │
+                     ▼
+              ASP.NET Core API
+                     │
+                     ▼
+                MediatR Pipeline
+                     │
+     ┌───────────────┼────────────────┐
+     ▼               ▼                ▼
 
-Persistence
- │
- ▼
-Domain
+ Validation      Logging        Performance
+  Behavior        Behavior        Behavior
 
-Persistence
- │
- ▼
-Application
+                     │
+                     ▼
+              Command / Query
+                     │
+                     ▼
+                  Handler
+                     │
+      ┌──────────────┼──────────────┐
+      ▼                             ▼
 
+ Repository                Specification
 
----> This : 
+      │
 
-API
-↓
-Application
-↓
-Domain
-↑
-Persistence
+      ▼
+
+ Aggregate Root
+
+      │
+
+      ▼
+
+ Domain Events
+
+      │
+
+      ▼
+
+ Unit Of Work
+
+      │
+
+      ▼
+
+ EF Core DbContext
+
+      │
+
+      ▼
+
+ SQL Server
