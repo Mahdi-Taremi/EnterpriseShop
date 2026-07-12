@@ -12,6 +12,8 @@ Enterprise Shop is a production-oriented ASP.NET Core Web API demonstrating mode
 
 ![Status](https://img.shields.io/badge/status-active-success)
 
+This project intentionally demonstrates multiple architectural patterns and practices for learning and showcasing software design skills. In real-world systems, architecture should be chosen based on business complexity rather than applying every pattern by default.
+
 2 Features : 
 | Feature                   | Status |
 | ------------------------- | ------ |
@@ -37,14 +39,14 @@ Enterprise Shop is a production-oriented ASP.NET Core Web API demonstrating mode
 
 
 3 Architecture : 
+Why This Architecture?
+EnterpriseShop is primarily a learning and portfolio project designed to demonstrate architectural concepts and software engineering practices rather than represent a one-size-fits-all solution.
 
-Presentation (API)
-↓
-Application
-↓
-Domain
-↑
-Persistence
+The goal of this project is to explore and implement patterns such as Clean Architecture, Domain-Driven Design (DDD), CQRS, Domain Events, Repository Pattern, Specification Pattern and Pipeline Behaviors in a single codebase.
+
+In real-world software, architecture should always be driven by business requirements, system complexity and team size. Not every application requires all of these patterns, and simplicity is often the better choice for smaller systems.
+
+The architectural decisions in this project were intentionally made to practice, compare and better understand enterprise application design.
 
 Detailed architecture documentation is available in /architecture.md.
 
@@ -78,9 +80,10 @@ Shop.Persistence
 4) dotnet run
 
 7 Architecture Decisions : 
-- ADR-001 Clean Architecture
-- ADR-002 Domain Events
-- ADR-003 Soft Delete
+ADR (Architecture Decision Records)
+- ADR- Clean Architecture
+- ADR- Domain Events
+- ADR- Soft Delete
 
 - Why Clean Architecture?
 Business rules should remain independent of infrastructure concerns.
@@ -97,7 +100,8 @@ Instead of writing LINQ queries everywhere, reusable specifications encapsulate 
 Entities should notify the outside world when something important happens without directly depending on infrastructure.
 - Why Pipeline Behaviors?
 Cross-cutting concerns such as validation, logging and transactions should not be duplicated inside handlers.
-
+- Why Persistence ?
+Persistence is separated into Assembly because of its ability to develop independently, separate responsibilities, and reduce dependency on other infrastructure.
 
 8 Roadmap :
 - Authentication (JWT)
