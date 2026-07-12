@@ -7,39 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Commands\**" />
-    <Compile Remove="Common\Exceptions\**" />
-    <Compile Remove="Common\Responses\**" />
-    <Compile Remove="Common\Validation\**" />
-    <Compile Remove="CQRS\Products\Commands\IncreaseStock\**" />
-    <Compile Remove="CQRS\Products\Queries\GetAvailableProducts\**" />
-    <Compile Remove="CQRS\Products\Validators\**" />
-    <Compile Remove="Mappings\**" />
-    <Compile Remove="Queries\**" />
-    <Compile Remove="Validators\**" />
-    <EmbeddedResource Remove="Commands\**" />
-    <EmbeddedResource Remove="Common\Exceptions\**" />
-    <EmbeddedResource Remove="Common\Responses\**" />
-    <EmbeddedResource Remove="Common\Validation\**" />
-    <EmbeddedResource Remove="CQRS\Products\Commands\IncreaseStock\**" />
-    <EmbeddedResource Remove="CQRS\Products\Queries\GetAvailableProducts\**" />
-    <EmbeddedResource Remove="CQRS\Products\Validators\**" />
-    <EmbeddedResource Remove="Mappings\**" />
-    <EmbeddedResource Remove="Queries\**" />
-    <EmbeddedResource Remove="Validators\**" />
-    <None Remove="Commands\**" />
-    <None Remove="Common\Exceptions\**" />
-    <None Remove="Common\Responses\**" />
-    <None Remove="Common\Validation\**" />
-    <None Remove="CQRS\Products\Commands\IncreaseStock\**" />
-    <None Remove="CQRS\Products\Queries\GetAvailableProducts\**" />
-    <None Remove="CQRS\Products\Validators\**" />
-    <None Remove="Mappings\**" />
-    <None Remove="Queries\**" />
-    <None Remove="Validators\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="16.2.0" />
     <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />

@@ -37,13 +37,6 @@ namespace Shop.Application.CQRS.Products.Queries.GetProductById
                 throw new KeyNotFoundException(
                     $"Product '{request.Id}' was not found.");
             return _mapper.Map<ProductDto>(product);
-            //return new ProductDto
-            //{
-            //    Id = product.Id,
-            //    Name = product.Name,
-            //    Price = product.Price,
-            //    Stock = product.Stock
-            //};
         }
     }
 }

@@ -20,8 +20,6 @@ var builder = WebApplication.CreateBuilder(args);
 //2. Add Serilog +
 builder.AddSerilogLogging();
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 
 // Add Redis +
@@ -94,9 +92,5 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.MapHealthChecks("/health");
-//app.MapHealthChecks("/health", new HealthCheckOptions
-//{
-//    ResponseWriter = HealthCheckResponseWriter.WriteResponse
-//});
 
 app.Run();

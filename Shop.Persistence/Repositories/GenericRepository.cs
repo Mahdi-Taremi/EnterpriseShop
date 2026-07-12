@@ -77,15 +77,6 @@ namespace Shop.Persistence.Repositories
 
             return await query.AnyAsync(cancellationToken);
         }
-        //public async Task<int> CountAsync(
-        //     BaseSpecification<TEntity> specification,
-        //     CancellationToken cancellationToken = default)
-        //{
-        //    var query = SpecificationEvaluator<TEntity>
-        //        .GetQuery(DbSet.AsQueryable(), specification);
-
-        //    return await query.CountAsync(cancellationToken);
-        //}
         public virtual async Task<int> CountAsync(
             BaseSpecification<TEntity> specification,
             CancellationToken cancellationToken = default)
